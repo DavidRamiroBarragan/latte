@@ -1,13 +1,8 @@
 import React from "react";
-import FormContact from "components/FormContact";
+import { Layout } from "Layout/Layout";
 
 function App() {
-  return (
-    <div className="App">
-      <FormContact />
-    </div>
-  );
+  return <Layout />;
 }
 
 export default App;
-// 
