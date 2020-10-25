@@ -4,10 +4,10 @@ import Favoritos from 'views/Favoritos';
 import Home from 'views/Home';
 
 const routes = [
-  {path: '/contacto', component: Contacto},
-  {path: '/favoritos', component: Favoritos},
-  {path: '/', component: Home},
-  {path: '*', component: Error404},
+  {path: '/', component: Home, exact: true},
+  {path: '/contacto', component: Contacto, exact: true},
+  {path: '/favoritos', component: Favoritos, exact: true},
+  {path: '*', component: Error404}
 ];
 
 export default routes;

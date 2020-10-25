@@ -1,9 +1,9 @@
-import useForm from "hooks/useForm";
-import React, { useRef, useState } from "react";
-import FormContactView from "./FormContactView";
+import useForm from 'hooks/useForm';
+import React, {useRef, useState} from 'react';
+import FormContactView from './FormContactView';
 
 function FormContact() {
-  const [form, setForm] = useForm({ name: "", email: "", info: "", file: {} });
+  const [form, setForm] = useForm({name: '', email: '', info: '', file: {}});
   const [show, setShow] = useState(false);
 
   const referencia = useRef();
@@ -16,11 +16,11 @@ function FormContact() {
   };
 
   const setInputData = (e) => {
-    setForm({ [e.target.name]: e.target.value });
+    setForm({[e.target.name]: e.target.value});
   };
 
   const handleFileInput = (files) => {
-    setForm({ file: files[0] });
+    setForm({file: files[0]});
     console.log(files);
   };
 
