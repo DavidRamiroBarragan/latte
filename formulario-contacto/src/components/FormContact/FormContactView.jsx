@@ -5,8 +5,7 @@ function FormContactView({
   submit,
   form,
   show,
-  handleFileInput,
-  fileInputref,
+  handleFileInput
 }) {
   return (
     <div>
@@ -40,8 +39,7 @@ function FormContactView({
           <input
             type="file"
             name="file"
-            ref={fileInputref}
-            onChange={() => handleFileInput(fileInputref.current.files)}
+            onChange={handleFileInput}
           />
         </div>
         <button type="submit">Enviar</button>

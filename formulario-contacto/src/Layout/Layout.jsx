@@ -1,20 +1,24 @@
-import Header from 'common/components/Header/Header';
-import React from 'react';
+import React, {Suspense} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Header from 'common/components/Header/Header';
 import routes from 'routes/AppRoutes';
 import {Container} from './styles';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <Router>
       <Header />
-      <Container>
-        <Switch>
-          {routes.map((singleRoute, index) => (
-            <Route {...singleRoute} key={index} />
-          ))}
-        </Switch>
-      </Container>
+      <Suspense fallback="Cargando...">
+        <Container>
+          <Switch>
+            {routes.map((singleRoute, index) => (
+              <Route {...singleRoute} key={index} />
+            ))}
+          </Switch>
+        </Container>
+      </Suspense>
     </Router>
   );
 };
+
+export default Layout;
