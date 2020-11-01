@@ -1,10 +1,14 @@
+import React from 'react';
+import Layout from 'layout';
 import './App.css';
-import LoginForm from './components/LoginForm/LoginForm';
+import Header from 'components/Header';
 
 function App() {
   return (
     <div className="App">
-      <LoginForm />
+      <Layout>
+        <Header />
+      </Layout>
     </div>
   );
 }

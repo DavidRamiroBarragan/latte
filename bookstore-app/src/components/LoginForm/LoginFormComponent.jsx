@@ -2,8 +2,9 @@ import React, {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import LoginFormSchema from '../../types/LoginForm.type';
+import LoginFormView from './LoginFormView';
 
-function LoginForm() {
+function LoginFormComponent() {
   const {handleSubmit, errors, register} = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(LoginFormSchema)
@@ -16,7 +17,7 @@ function LoginForm() {
   function onSubmit(data) {
     console.log(data);
   }
-  return <LoginForm errors={errors} onSubmit={handleSubmit(onSubmit)} register={register} />;
+  return <LoginFormView errors={errors} onSubmit={handleSubmit(onSubmit)} register={register} />;
 }
 
-export default LoginForm;
+export default LoginFormComponent;

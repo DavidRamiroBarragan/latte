@@ -1,16 +1,17 @@
 import React from 'react';
+import {Form, Error} from '../../styles/FormStyles';
 
 function LoginFormView({register, onSubmit, errors}) {
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
       <input type="string" ref={register} name="email" id="email" />
-      {errors?.email && <p>{errors.email.message}</p>}
+      {errors?.email && <Error>{errors.email.message}</Error>}
       <label htmlFor="password">Password</label>
       <input type="password" ref={register} name="password" />
-      {errors?.password && <p>{errors.password.message}</p>}
+      {errors?.password && <Error>{errors.password.message}</Error>}
       <button type="submit">Login</button>
-    </form>
+    </Form>
   );
 }
 
