@@ -1,13 +1,13 @@
-export const HOME_ROUTER = 'home';
-export const LOGIN_ROUTER = 'login';
+import views from 'views';
+import {HOME, LOGIN} from './paths';
 
 export const routes = [
   {
-    path: '/',
-    component: HOME_ROUTER
+    path: HOME,
+    component: views.Home
   },
   {
-    path: `/${LOGIN_ROUTER}`,
-    component: LOGIN_ROUTER
+    path: LOGIN,
+    component: views.Login
   }
 ];

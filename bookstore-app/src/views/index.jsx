@@ -1,2 +1,10 @@
-export {default as Login} from './Login';
-export {default as Home} from './Home';
+import {lazy} from 'react';
+
+const Home = lazy(() => import('views/Home'));
+const Login = lazy(() => import('views/Login'));
+
+export default {
+  Home,
+  Login
+};
+  

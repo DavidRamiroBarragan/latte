@@ -1,15 +1,22 @@
-import React from 'react';
-import Layout from 'layout';
+import React, {Suspense} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {routes} from 'routes/routes';
+import Layout from 'components/Layout';
 import './App.css';
-import Header from 'components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <Layout>
-        <Header />
-      </Layout>
-    </div>
+    <Layout>
+      <BrowserRouter>
+        <Suspense fallback="Cargando...">
+          <Switch>
+            {routes.map((item) => (
+              <Route path={item.path} component={item.component} key={item.path} exact />
+            ))}
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
+    </Layout>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, Error} from '../../styles/FormStyles';
+import {Form, Error} from 'components/UI/FormStyles';
+import Button from 'components/UI/Button';
 
 function LoginFormView({register, onSubmit, errors}) {
   return (
@@ -10,7 +11,7 @@ function LoginFormView({register, onSubmit, errors}) {
       <label htmlFor="password">Password</label>
       <input type="password" ref={register} name="password" />
       {errors?.password && <Error>{errors.password.message}</Error>}
-      <button type="submit">Login</button>
+      <Button type="submit">Login</Button>
     </Form>
   );
 }
