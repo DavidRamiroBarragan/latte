@@ -1,25 +1,14 @@
-import React, {Suspense, useState} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {privateRoutes, publicRoutes} from 'routes/routes';
+import React, {Suspense} from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Layout from 'components/Layout';
-import './App.css';
-import {AuthContext} from 'context/auth';
 import PrivateRouter from 'routes/components/PrivateRouter/PrivateRouter';
-import {localstorageUtils} from 'utils/localStorageUtils';
+import {privateRoutes, publicRoutes} from 'routes/routes';
+import './App.css';
+import AuthProvider from 'context/components/AuthProvider';
 
 function App() {
-  const [authTokens, setAuthTokens] = useState(exitstingToken);
-  function exitstingToken() {
-    localstorageUtils.getItem('auth');
-  }
-
-  function setTokens(data) {
-    localstorageUtils.setItem('auth', data);
-    setAuthTokens(data);
-  }
-
   return (
-    <AuthContext.Provider value={{authTokens, setAuthTokens: setTokens}}>
+    <AuthProvider>
       <Layout>
         <BrowserRouter>
           <Suspense fallback="Cargando...">
@@ -34,7 +23,7 @@ function App() {
           </Suspense>
         </BrowserRouter>
       </Layout>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
