@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Error} from 'components/UI/FormStyles';
-import {PrimaryButton} from 'components/UI/Buttons';
+import {PrimaryButton} from 'components/UI/ButtonsStyles';
 
 function LoginFormView({register, onSubmit, errors}) {
   return (
