@@ -1,8 +1,10 @@
+import styled from 'styled-components';
 import {neutral} from 'styles';
 
-const {default: styled} = require('styled-components');
-
 export const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
   background-color: ${neutral[100]};
   border-radius: 4px;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -13,23 +15,19 @@ export const CardWrapper = styled.div`
 `;
 
 export const CardContainer = styled.button`
-  width: 100%;
-  display: block;
   text-align: inherit;
   color: inherit;
   border: 0;
   cursor: pointer;
-  position: relative;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
   background-color: transparent;
   -webkit-tap-highlight-color: transparent;
+  padding: 0;
 `;
 
 export const ImageWrapper = styled.div`
-  height: 140px;
-  display: block;
+  height: 150px;
+  object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -41,7 +39,6 @@ export const ImageWrapper = styled.div`
 `;
 
 export const DescriptionContainer = styled.div`
-  padding: 16px;
+  padding: 1rem;
   text-align: inherit;
-  display: block;
 `;
