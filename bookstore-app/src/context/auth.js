@@ -13,9 +13,12 @@ export default function AuthProvider({children}) {
     setAuthTokens(data);
   }
 
+  function logout() {
+    localstorageUtils.removeItem('auth');
+    setAuthTokens(null);
+  }
+
   return (
-    <AuthContext.Provider value={{login, isAuthenticated}}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{login, isAuthenticated, logout}}>{children}</AuthContext.Provider>
   );
 }
