@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Card} from 'components/Card/Card';
-import {Http} from 'services/Http/httpService';
+import {getBooks} from 'services/Http/book';
 
 function Home() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
-    Http.get().then(setBooks);
+    getBooks().then(setBooks);
   }, []);
   return books.map((book) => {
     console.log(book);

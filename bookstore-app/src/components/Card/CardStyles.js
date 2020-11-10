@@ -2,15 +2,21 @@ import styled from 'styled-components';
 import {neutral} from 'styles';
 
 export const CardWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  background-color: ${neutral[100]};
-  border-radius: 4px;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 345px;
+  padding: 0;
+  margin: 0;
+
+  background-color: ${neutral[100]};
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;
 `;
 

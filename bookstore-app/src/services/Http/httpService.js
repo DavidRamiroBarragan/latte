@@ -1,19 +1,25 @@
-export const Http = {
-  get: getBooks
+const headers = {
+  accept: 'application/json',
+  'Content-Type': 'application/json',
+  'X-AUTH-TOKEN': 'LIBRARIFY'
 };
 
-async function getBooks() {
-  try {
-    const response = await fetch('http://18.130.120.189/api/books', {
+const Http = {
+  get: async function(url) {
+    const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-AUTH-TOKEN': 'LIBRARIFY'
-      }
+      headers
     });
     return response.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+  },
+  post: async function(url, body) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body
+    });
+    return response.json();
+  },
+};
+
+export default Http;

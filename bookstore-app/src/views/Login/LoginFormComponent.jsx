@@ -1,34 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import LoginFormSchema from 'types/LoginForm.type';
 import LoginFormView from './LoginFormView';
-import {Redirect} from 'react-router-dom';
-import {HOME} from 'routes/paths';
-import useAuth from 'hooks/useAuth';
+import useAuthContext from 'hooks/useAuthContext';
 
 function LoginFormComponent() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const {handleSubmit, errors, register} = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(LoginFormSchema)
   });
 
-  const {setTokens: setAuthTokens, isAuthenticated} = useAuth();
+  const {login} = useAuthContext();
 
   function onSubmit(data) {
-    setAuthTokens(data.text);
-    setLoggedIn(true);
-  }
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setLoggedIn(true);
-    }
-  }, [isAuthenticated]);
-
-  if (isLoggedIn) {
-    return <Redirect to={HOME} />;
+    login(data);
   }
 
   return <LoginFormView errors={errors} onSubmit={handleSubmit(onSubmit)} register={register} />;

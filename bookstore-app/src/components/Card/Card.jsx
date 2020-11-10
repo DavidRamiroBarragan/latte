@@ -1,10 +1,10 @@
+import React from 'react';
 import {
   CardContainer,
   CardWrapper,
   DescriptionContainer,
   ImageWrapper
-} from 'components/UI/CardStyles';
-import React from 'react';
+} from './CardStyles';
 
 export const Card = ({image, title}) => {
   return (
