@@ -16,7 +16,7 @@ const Button = styled.button`
     color: ${defaultTheme.textColorOnPrimary};
   }
   &:focus {
-    outline: 3px solid ${defaultTheme.primaryColorHover};
+    /* outline: 3px solid ${defaultTheme.primaryColorHover}; */
     outline-offset: 2px;
   }
 

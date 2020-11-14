@@ -1,10 +1,19 @@
 import views from 'views';
-import {HOME, LOGIN} from './paths';
+import {DETAIL, HOME, LOGIN, SEARCH} from './paths';
 
 export const privateRoutes = [
   {
     path: HOME,
+    component: views.Home,
+    exact: true
+  },
+  {
+    path: SEARCH,
     component: views.Home
+  },
+  {
+    path: DETAIL,
+    component: views.Detail
   }
 ];
 

@@ -7,25 +7,28 @@ import {privateRoutes, publicRoutes} from 'routes/routes';
 import './App.css';
 import AuthProvider from 'context/auth';
 import {GlobalStyle} from 'styles/Global';
+import AppProvider from 'context/aplication';
 
 function App() {
   return (
     <>
       <AuthProvider>
-        <Layout>
-          <BrowserRouter>
-            <Suspense fallback="Cargando...">
-              <Switch>
-                {publicRoutes.map((item) => (
-                  <PublicRoute {...item} key={item.path} exact />
-                ))}
-                {privateRoutes.map((item) => (
-                  <PrivateRoute {...item} key={item.path} />
-                ))}
-              </Switch>
-            </Suspense>
-          </BrowserRouter>
-        </Layout>
+        <AppProvider>
+          <Layout>
+            <BrowserRouter>
+              <Suspense fallback="Cargando...">
+                <Switch>
+                  {publicRoutes.map((item) => (
+                    <PublicRoute {...item} key={item.path} exact />
+                  ))}
+                  {privateRoutes.map((item) => (
+                    <PrivateRoute {...item} key={item.path} />
+                  ))}
+                </Switch>
+              </Suspense>
+            </BrowserRouter>
+          </Layout>
+        </AppProvider>
       </AuthProvider>
       <GlobalStyle />
     </>

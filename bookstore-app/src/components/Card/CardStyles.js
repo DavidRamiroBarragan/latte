@@ -1,8 +1,9 @@
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {neutral} from 'styles';
+import {defaultTheme, neutral} from 'styles';
 import {boxSadow} from 'styles/helpers';
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled(Link)`
   position: relative;
   overflow: hidden;
 
@@ -16,6 +17,8 @@ export const CardWrapper = styled.div`
   background-color: ${neutral[100]};
   box-shadow: ${boxSadow};
   border-radius: 4px;
+  text-decoration: none;
+  color: ${defaultTheme.textColor};
 
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;

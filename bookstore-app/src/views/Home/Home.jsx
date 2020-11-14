@@ -1,19 +1,47 @@
 import React, {useEffect, useState} from 'react';
 import {Card} from 'components/Card/Card';
-import {getBooks} from 'services/Http/book';
-import {RowMax4Items} from 'components/UI/Section';
+import {RowFlexEnd, RowMax4Items} from 'components/UI/Layout';
+import {PrimaryButton} from 'components/UI/ButtonsStyles';
+import SearchForm from 'components/SearchForm/SearchForm';
+import {useParams} from 'react-router-dom';
+import useAplicationContext from 'hooks/useAplicationContext';
 
 function Home() {
-  const [books, setBooks] = useState([]);
+  const [categoryView, setCategoryView] = useState(false);
+  const {libros, categories, getBooks, getBooksWithCategory} = useAplicationContext();
+  const {keyword} = useParams();
+
   useEffect(() => {
-    getBooks().then(setBooks);
-  }, []);
+    console.log(categories);
+    if (categories.some((category) => category.name === keyword)) {
+      getBooksWithCategory(keyword);
+    } else {
+      getBooks();
+    }
+    // eslint-disable-next-line
+  }, [keyword, getBooks, getBooksWithCategory]);
+
+  const setViewCategories = () => setCategoryView((oldState) => !oldState);
   return (
-    <RowMax4Items>
-      {books.map((book) => (
-        <Card {...book} key={`${book.title}-${book.id}`} categoryView={true} />
-      ))}
-    </RowMax4Items>
+    <>
+      <RowFlexEnd>
+        <PrimaryButton
+          modifiers="small"
+          onClick={setViewCategories}
+          modifiers={
+            categoryView ? ['small', 'primaryButtonSuccess'] : ['small', 'primaryButtonWarning']
+          }
+        >
+          View Categories
+        </PrimaryButton>
+        <SearchForm options={categories} />
+      </RowFlexEnd>
+      <RowMax4Items>
+        {libros.map((book) => (
+          <Card {...book} key={`${book.title}-${book.id}`} categoryView={categoryView} />
+        ))}
+      </RowMax4Items>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import {Badge} from 'components/UI/Badges';
-import {RowMax4Items} from 'components/UI/Section';
+import {RowMax4Items} from 'components/UI/Layout';
 import React from 'react';
 import {
   CardContainer,
@@ -9,13 +9,13 @@ import {
   TitleLikeImageWrapper
 } from './CardStyles';
 
-export const Card = ({image, title, categories, categoryView = false}) => {
+export const Card = ({image, title, categories, id, categoryView = false}) => {
   const newData = title
     .split(' ', 2)
     .reduce((acc, value) => acc + value.substring(0, 1), '')
     .toUpperCase();
   return (
-    <CardWrapper categoryView={categoryView}>
+    <CardWrapper categoryView={categoryView} to={`/books/${id}`}>
       <CardContainer categoryView={categoryView}>
         {image ? (
           <ImageWrapper image={image} categoryView={categoryView} />
@@ -31,7 +31,7 @@ export const Card = ({image, title, categories, categoryView = false}) => {
               </Badge>
             ))}
           </RowMax4Items>
-          <p class="description">
+          <p className="description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam est
             necessitatibus, sit totam quis asperiores consequuntur obcaecati, ipsam ad voluptatem
             quo magni magnam a repudiandae nobis id hic vero.
