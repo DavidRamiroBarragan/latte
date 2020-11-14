@@ -72,3 +72,9 @@ export const BUTTON_MODIFIERS = {
     border: 2px solid ${defaultTheme.status.warningColor};
   `
 };
+
+export const BADGES_MODIFIERS = {
+  success: () => `background-color: ${defaultTheme.status.successColor}`,
+  error: () => `color: ${defaultTheme.status.errorColor}`,
+  warning: () => `color: ${defaultTheme.status.warningColor}`
+};
