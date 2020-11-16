@@ -1,44 +1,42 @@
-import React, {useEffect, useState} from 'react';
-import {Card} from 'components/Card/Card';
+import React, {useState, useMemo} from 'react';
+import Card from 'components/Card/Card';
 import {RowFlexEnd, RowMax4Items} from 'components/UI/Layout';
-import {PrimaryButton} from 'components/UI/ButtonsStyles';
-import SearchForm from 'components/SearchForm/SearchForm';
-import {useParams} from 'react-router-dom';
+import SearchForm from './SearchForm/SearchForm';
 import useAplicationContext from 'hooks/useAplicationContext';
 
 function Home() {
-  const [categoryView, setCategoryView] = useState(false);
-  const {libros, categories, getBooks, getBooksWithCategory} = useAplicationContext();
-  const {keyword} = useParams();
+  const [currentCategoryId, setCurrentCategoryId] = useState(-1);
+  const {books, categories} = useAplicationContext();
 
-  useEffect(() => {
-    console.log(categories);
-    if (categories.some((category) => category.name === keyword)) {
-      getBooksWithCategory(keyword);
-    } else {
-      getBooks();
-    }
-    // eslint-disable-next-line
-  }, [keyword, getBooks, getBooksWithCategory]);
+  const booksToShow = useMemo(
+    function () {
+      if (currentCategoryId > -1) {
+        return books.filter((book) => {
+          return book.categories.some((cat) => cat.id === currentCategoryId);
+        });
+      } else {
+        return books;
+      }
+    },
+    [books, currentCategoryId]
+  );
 
-  const setViewCategories = () => setCategoryView((oldState) => !oldState);
+  const handleCategoryChange = (event) => {
+    setCurrentCategoryId(parseInt(event.target.value));
+  };
+
   return (
     <>
       <RowFlexEnd>
-        <PrimaryButton
-          modifiers="small"
-          onClick={setViewCategories}
-          modifiers={
-            categoryView ? ['small', 'primaryButtonSuccess'] : ['small', 'primaryButtonWarning']
-          }
-        >
-          View Categories
-        </PrimaryButton>
-        <SearchForm options={categories} />
+        <SearchForm
+          options={categories}
+          onChangeCategory={handleCategoryChange}
+          currentCategoryId={currentCategoryId}
+        />
       </RowFlexEnd>
       <RowMax4Items>
-        {libros.map((book) => (
-          <Card {...book} key={`${book.title}-${book.id}`} categoryView={categoryView} />
+        {booksToShow.map((book) => (
+          <Card {...book} key={`${book.title}-${book.id}`} />
         ))}
       </RowMax4Items>
     </>

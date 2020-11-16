@@ -10,6 +10,7 @@ import {
   GET_BOOKS_BY_CATEGORY,
   GET_CATEGORIES
 } from './aplication.types';
+
 export const fetchBooksAction = (dispatch) => {
   dispatch({type: BOOKS_LOADING});
   getBooks()

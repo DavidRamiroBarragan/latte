@@ -9,7 +9,7 @@ import {
   TitleLikeImageWrapper
 } from './CardStyles';
 
-export const Card = ({image, title, categories, id, categoryView = false}) => {
+const Card = ({image, title, categories, id, categoryView = false}) => {
   const newData = title
     .split(' ', 2)
     .reduce((acc, value) => acc + value.substring(0, 1), '')
@@ -41,3 +41,5 @@ export const Card = ({image, title, categories, id, categoryView = false}) => {
     </CardWrapper>
   );
 };
+
+export default Card;
