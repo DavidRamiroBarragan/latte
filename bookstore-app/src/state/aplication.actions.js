@@ -40,11 +40,10 @@ export const getBookByIdAction = (id) => (dispatch) => {
     .catch((e) => dispatch({type: BOOKS_ERROR, payload: e}));
 };
 
-export const getCategoriesAction = async (dispatch) => {
+export const fetchCategoriesAction = async (dispatch) => {
   dispatch({type: BOOKS_LOADING});
   try {
     const categories = await getCategories();
-    console.log(categories);
     dispatch({type: GET_CATEGORIES, payload: categories});
   } catch (error) {
     dispatch({type: BOOKS_ERROR, payload: error});

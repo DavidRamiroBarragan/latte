@@ -1,29 +1,30 @@
 import {createContext, useCallback, useEffect, useMemo} from 'react';
 import {useThunkReducer} from 'hooks/useThunkReducer';
 import {aplicationReducer, inititalState} from 'state/aplication.reducer';
-import {fetchBooksAction, getCategoriesAction} from 'state/aplication.actions';
+import {fetchBooksAction, fetchCategoriesAction} from 'state/aplication.actions';
 
 export const AplicationContext = createContext();
 
 export default function AppProvider({children}) {
   const [state, dispatch] = useThunkReducer(aplicationReducer, inititalState);
 
-  const {books, actual_book, categories} = state;
+  const {books, categories} = state;
 
   useEffect(() => {
-    dispatch(getCategoriesAction);
+    dispatch(fetchCategoriesAction);
     dispatch(fetchBooksAction);
   }, [dispatch]);
 
   const getBooks = useCallback(() => {
     dispatch(fetchBooksAction);
   }, [dispatch]);
+  const getCategories = useCallback(() => dispatch(fetchCategoriesAction), [dispatch]);
 
-  const value = useMemo(() => ({categories, books, actual_book, getBooks}), [
+  const value = useMemo(() => ({categories, books, getBooks, getCategories}), [
     categories,
     books,
-    actual_book,
-    getBooks
+    getBooks,
+    getCategories
   ]);
 
   return <AplicationContext.Provider value={value}>{children}</AplicationContext.Provider>;
