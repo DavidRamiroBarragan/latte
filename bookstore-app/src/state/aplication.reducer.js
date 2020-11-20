@@ -42,7 +42,6 @@ export const aplicationReducer = (state, action) => {
       return {
         ...state,
         books: state.books.filter((book) => {
-          console.log(book, action.payload);
           return book.categories.some((cat) => cat.name === action.payload);
         }),
         loading: false,

@@ -1,18 +1,17 @@
-import React, {useEffect} from 'react';
-import {useThunkReducer} from 'hooks/useThunkReducer';
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {getBookByIdAction} from 'state/aplication.actions';
-import {aplicationReducer, inititalState} from 'state/aplication.reducer';
+import {getBookById} from 'services/Http/book';
 
 function Detail() {
   const {id} = useParams();
-  const [state, dispatch] = useThunkReducer(aplicationReducer, inititalState);
-  const {actual_book} = state;
+  const [actualBook, setActualBook] = useState(null);
 
   useEffect(() => {
-    dispatch(getBookByIdAction(id));
-  }, [dispatch, id]);
-  return <div>{JSON.stringify(actual_book)}</div>;
+    if (id) {
+      getBookById(id).then(setActualBook);
+    }
+  }, [id]);
+  return <div>{JSON.stringify(actualBook)}</div>;
 }
 
 export default Detail;
